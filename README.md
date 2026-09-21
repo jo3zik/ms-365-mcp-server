@@ -16,6 +16,8 @@ This server supports multiple Microsoft cloud environments:
 | **Global** (default) | International Microsoft 365        | login.microsoftonline.com | graph.microsoft.com             |
 | **China** (21Vianet) | Microsoft 365 operated by 21Vianet | login.chinacloudapi.cn    | microsoftgraph.chinacloudapi.cn |
 
+To route Graph traffic through a proxy of your own (one that terminates the client's plain HTTP and originates TLS to Microsoft), set `MS365_MCP_GRAPH_BASE_URL` to its base URL; see the environment variable list under CLI Options.
+
 ## Prerequisites
 
 - Node.js >= 20 (recommended)
@@ -624,6 +626,7 @@ Environment variables:
 - `MS365_MCP_RATE_LIMIT_DISABLED=true|1`: Disable per-IP rate limiting in HTTP mode (default: enabled — 30 req/min on `/authorize`, `/token`, `/register`; 120 req/min on `/mcp`)
 - `MS365_MCP_TRUST_PROXY_HOPS=<n>`: Number of trusted reverse-proxy hops in HTTP mode (default `1`). Accurate per-IP rate limiting depends on this matching your deployment — set to the number of proxies in front of the server, `0` to use the raw socket peer IP, or a comma-separated subnet list
 - `MS365_MCP_CLOUD_TYPE=global|china`: Microsoft cloud environment (alternative to --cloud flag)
+- `MS365_MCP_GRAPH_BASE_URL=<url>`: Send every Graph call to this base URL instead of the cloud's `graph.microsoft.com` (e.g. `http://127.0.0.1:10255/tenant-a/graph` for an egress proxy that originates TLS itself). Absolute http(s) URL; a path prefix is kept, so requests go to `<url>/v1.0/...`. The login authority is unchanged. Not read from `.env`
 - `LOG_LEVEL`: Set logging level (default: 'info')
 - `SILENT=true|1`: Disable console output
 - `MS365_MCP_REDACT_PII=false|0`: Disable scrubbing of JWTs, Bearer headers, OAuth token fields, and email addresses from log messages (default: enabled). The server handles live Graph bearer tokens, so redaction is on unless you opt out for fully verbose local debugging.
