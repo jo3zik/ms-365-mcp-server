@@ -1,8 +1,8 @@
 {
-  "name": "@softeria/ms-365-mcp-server",
+  "name": "@jo3zik/ms-365-mcp-server",
   "mcpName": "io.github.Softeria/ms-365-mcp-server",
-  "version": "0.0.0-development",
-  "description": " A Model Context Protocol (MCP) server for interacting with Microsoft 365 and Office services through the Graph API",
+  "version": "0.147.0",
+  "description": " A Model Context Protocol (MCP) server for interacting with Microsoft 365 and Office services through the Graph API (interim build: @softeria/ms-365-mcp-server 0.147.0 plus MS365_MCP_GRAPH_BASE_URL, upstream PR Softeria/ms-365-mcp-server#684; pin flips back when upstream ships)",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -81,5 +81,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Softeria/ms-365-mcp-server.git"
-  }
+  },
+  "homepage": "https://github.com/Softeria/ms-365-mcp-server/pull/684"
 }
